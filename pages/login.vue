@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="submit">
+  <form @submit.prevent="login">
     <h1 class="h3 mb-3 fw-normal">
       Please sign in
     </h1>
@@ -17,18 +17,17 @@
         password: ''
       }
     },
-      methods: {
-        async submit(){
-          await fetch('http://localhost:3000/auth/login', {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({
-            email: this.email,
-            password: this.password
-          })
-        } );
-        await this.$router.push('/');
+    methods: {
+      login() {
+        const loginForm = {
+          email: this.email,
+          password: this.password
+        }
+      this.$store.dispatch('login', loginForm)
+      this.$store.dispatch('getAllProjects', null, {root:true})
+        this.showLoader = false
+        this.$router.push({ name: 'default' })
       }
     }
-  }
+}
 </script>
