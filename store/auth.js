@@ -1,6 +1,5 @@
 // store/auth.js
 import globalAxios from 'axios'
-
 // reusable aliases for mutations
 const AUTH_MUTATIONS = {
   SET_USER: 'SET_USER',
@@ -47,6 +46,11 @@ const actions = {
     const { data: { data: { user, payload } } } = await this.$axios.post(
       '/auth/login', 
       { email, password }
+    ).then(res => {
+      console.log(res)
+      localStorage.setItem('token', res.data['token'])
+    },
+    
     )
     
     // commit the user and tokens to the state

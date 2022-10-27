@@ -24,9 +24,9 @@
           password: this.password
         }
       this.$store.dispatch('login', loginForm)
-      this.$store.dispatch('getAllProjects', null, {root:true})
-        this.showLoader = false
-        this.$router.push({ name: 'default' })
+      this.$store.dispatch('getAllCourses', null, {root:true})
+      this.showLoader = false
+      // this.$router.push('/default')
       }
     }
 }

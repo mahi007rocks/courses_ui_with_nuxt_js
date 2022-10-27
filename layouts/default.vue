@@ -33,7 +33,7 @@ export default {
   name: 'layout',
   data() {
     return {
-      auth: false
+      auth: (localStorage.getItem('token') ? true : false)
     }
   },
   mounted() {
@@ -43,10 +43,9 @@ export default {
   },
   methods: {
     async logout() {
-      await fetch('http://localhost:8000/api/logout', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        credentials: 'include',
+      await fetch('http://localhost:3000/auth/logout', {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token')},
       });
       await this.$router.push('/login');
     }

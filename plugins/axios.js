@@ -2,8 +2,7 @@
 
 export default function ({ store, app: { $axios }, redirect }) {
   const IGNORED_PATHS = ['/auth/login', '/auth/logout', '/auth/refresh']
-console.log('-----------------')
-console.log($axios)
+
   $axios.onRequest((config) => {
     if (store.state.auth.access_token) {
       config.headers.Authorization = store.state.auth.access_token
