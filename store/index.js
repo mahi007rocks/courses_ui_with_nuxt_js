@@ -1,17 +1,15 @@
 import Vue from 'vue'
 import Vuex, { Store } from 'vuex'
-import auth from './modules/auth'
-import course from './modules/course'
+import auth from './auth'
+import course from './course'
 
+const createStore = () => {
+  return new Vuex.Store({
+    modules: {
+      auth,
+      course
+    }
+  })
+}
 
-Vue.use(Vuex)
-
-export default new Vuex.Store({
-  state: {},
-  mutations: {},
-  actions: {},
-  modules: {
-   auth,
-   course
-  }
-})
+export default createStore

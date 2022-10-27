@@ -18,7 +18,7 @@
       }
     },
     methods: {
-      login() {
+      login() { 
         const loginForm = {
           email: this.email,
           password: this.password

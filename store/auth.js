@@ -1,20 +1,21 @@
 // store/auth.js
+import globalAxios from 'axios'
 
 // reusable aliases for mutations
-export const AUTH_MUTATIONS = {
+const AUTH_MUTATIONS = {
   SET_USER: 'SET_USER',
   SET_PAYLOAD: 'SET_PAYLOAD',
   LOGOUT: 'LOGOUT',
 }
 
-export const state = () => ({
+const state = {
   access_token: null, // JWT access token
   refresh_token: null, // JWT refresh token
   id: null, // user id
   email_address: null, // user email address
-})
+}
 
-export const mutations = {
+const mutations = {
   // store the logged in user in the state
   [AUTH_MUTATIONS.SET_USER] (state, { id, email_address }) {
     state.id = id
@@ -40,12 +41,12 @@ export const mutations = {
   },
 }
 
-export const actions = {
-  async login ({ commit, dispatch }, { email_address, password }) {
+const actions = {
+  async login ({ commit, dispatch }, { email, password }) {
     // make an API call to login the user with an email address and password
     const { data: { data: { user, payload } } } = await this.$axios.post(
       '/auth/login', 
-      { email_address, password }
+      { email, password }
     )
     
     // commit the user and tokens to the state
@@ -53,11 +54,11 @@ export const actions = {
     commit(AUTH_MUTATIONS.SET_PAYLOAD, payload)
   },
 
-  async register ({ commit }, { email_addr, password }) {
+  async register ({ commit }, { username, email, password }) {
     // make an API call to register the user
     const { data: { data: { user, payload } } } = await this.$axios.post(
       '/users', 
-      { email_address, password }
+      { username, email, password }
     )
     
     // commit the user and tokens to the state
@@ -84,7 +85,7 @@ export const actions = {
   },
 }
 
-export const getters = {
+const getters = {
   // determine if the user is authenticated based on the presence of the access token
   isAuthenticated: (state) => {
     return state.access_token && state.access_token !== ''
