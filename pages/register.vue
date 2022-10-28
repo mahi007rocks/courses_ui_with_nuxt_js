@@ -21,7 +21,7 @@
     },
     methods: {
       async submit(){
-        await fetch('http://localhost:3000/users', {
+        await fetch('https://rocky-caverns-45128.herokuapp.com/users', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({

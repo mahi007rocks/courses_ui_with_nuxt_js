@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     async logout() {
-      await fetch('http://localhost:3000/auth/logout', {
+      await fetch('https://rocky-caverns-45128.herokuapp.com/auth/logout', {
         method: 'GET',
         headers: {'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token')},
       });
