@@ -23,5 +23,8 @@
     "vue-template-compiler": "^2.7.10",
     "vuex-persistedstate": "^4.1.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "engines": {
+    "node": "18.11.0"
+  }
 }
